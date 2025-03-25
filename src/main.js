@@ -103,6 +103,9 @@ var savedPosters = [];
 var currentPoster;
 
 var randPosterButton = document.querySelector('.show-random')
+var posterTitle = document.querySelector('.poster-title')
+var posterQuote = document.querySelector('.poster-quote')
+var posterImage = document.querySelector('.poster-img')
 // event listeners go here 👇
 
 randPosterButton.addEventListener("click",randomPoster)
@@ -124,5 +127,12 @@ function createPoster(imageURL, title, quote) {
 
 
 function randomPoster(){
-  createPoster(getRandomIndex(images),getRandomIndex(titles),getRandomIndex(quotes))
+  posterTitle.innerText = titles[getRandomIndex(titles)]
+  posterQuote.innerText = quotes[getRandomIndex(quotes)]
+  posterImage.src = images[getRandomIndex(images)]
 }
+
+posterTitle.innerHTML = `<h1 class="poster-title">${titles[getRandomIndex(titles)]}</h1>`
+posterQuote.innerHTML = `<h3 class="poster-quote">${quotes[getRandomIndex(quotes)]}</h3>`
+posterImage.src= images[getRandomIndex(images)]
+posterImage.alt= 'inspiring image of an animal'
