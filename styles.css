@@ -1,5 +1,5 @@
 /* ~~~~~ GLOBAL RULES ~~~~~ */
-*,
+*, /* means it applies to all elements*/
 *:before,
 *:after {
   box-sizing: border-box;
@@ -30,8 +30,8 @@ button:hover {
 }
 
 .hidden {
-  display: none!important;
-}
+  display: none!important; /* removes the element from the page layout */
+} /* important overrides other display properties */
 
 /* ~~~~~ MAIN POSTER SECTION ~~~~~ */
 .main-poster {
