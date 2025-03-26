@@ -106,9 +106,25 @@ var randPosterButton = document.querySelector('.show-random')
 var posterTitle = document.querySelector('.poster-title')
 var posterQuote = document.querySelector('.poster-quote')
 var posterImage = document.querySelector('.poster-img')
+
+//change poster
+posterTitle.innerText = titles[getRandomIndex(titles)]
+posterQuote.innerText = quotes[getRandomIndex(quotes)]
+posterImage.src= images[getRandomIndex(images)]
+posterImage.alt= 'a motivational image'
+
+var makePosterButton = document.querySelector('.show-form')
+var mainPoster = document.querySelector('.main-poster')
+var posterForm = document.querySelector('.poster-form')
+
+var takeMeBack = document.querySelector('.show-main')
 // event listeners go here 👇
 
 randPosterButton.addEventListener("click",randomPoster)
+
+makePosterButton.addEventListener("click",changePage)
+
+takeMeBack.addEventListener("click",backToMain)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -132,7 +148,12 @@ function randomPoster(){
   posterImage.src = images[getRandomIndex(images)]
 }
 
-posterTitle.innerHTML = `<h1 class="poster-title">${titles[getRandomIndex(titles)]}</h1>`
-posterQuote.innerHTML = `<h3 class="poster-quote">${quotes[getRandomIndex(quotes)]}</h3>`
-posterImage.src= images[getRandomIndex(images)]
-posterImage.alt= 'inspiring image of an animal'
+function changePage(){
+  mainPoster.style.display = 'none'
+  posterForm.classList.remove("hidden")
+}
+
+function backToMain(){
+  posterForm.classList.add("hidden")
+  mainPoster.style.display = 'block'
+}
