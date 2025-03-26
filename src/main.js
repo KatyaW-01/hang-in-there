@@ -119,6 +119,12 @@ var savedPosters = document.querySelector('.saved-posters')
 
 var backButton = document.querySelector('.back-to-main')
 
+var userImage = document.querySelector('#poster-image-url')
+var userTitle = document.querySelector('#poster-title')
+var userQuote = document.querySelector('#poster-quote')
+
+var showPosterButton = document.querySelector('.make-poster')
+
 //change poster on main screen
 posterTitle.innerText = titles[getRandomIndex(titles)]
 posterQuote.innerText = quotes[getRandomIndex(quotes)]
@@ -137,6 +143,8 @@ takeMeBack.addEventListener("click",backToMain)
 savedPostersButton.addEventListener("click",showSavedPosters)
 
 backButton.addEventListener("click",backToMain)
+
+showPosterButton.addEventListener("click",userPoster)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -174,5 +182,23 @@ function backToMain(){
   posterForm.classList.add("hidden")
   savedPosters.classList.add("hidden")
   mainPoster.style.display = 'block'
+}
+
+function userPoster(event){
+  event.preventDefault()
+
+  currentPoster = createPoster(userImage.value,userTitle.value,userQuote.value)
   
+  images.push(currentPoster.imageURL)
+  titles.push(currentPoster.title)
+  quotes.push(currentPoster.quote)
+
+  posterForm.classList.add("hidden")
+  mainPoster.style.display = 'block'
+
+  posterTitle.innerText = currentPoster.title
+  posterQuote.innerText = currentPoster.quote
+  posterImage.src= currentPoster.imageURL
+  posterImage.alt= 'a motivational image'
+
 }
