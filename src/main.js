@@ -113,9 +113,9 @@ var posterForm = document.querySelector('.poster-form')
 
 var takeMeBack = document.querySelector('.show-main')
 
-var savedPostersButton = document.querySelector('.show-saved')
+var showSavedPostersButton = document.querySelector('.show-saved')
 
-var savedPosters = document.querySelector('.saved-posters')
+var savedPostersView = document.querySelector('.saved-posters')
 
 var backButton = document.querySelector('.back-to-main')
 
@@ -125,12 +125,18 @@ var userQuote = document.querySelector('#poster-quote')
 
 var showPosterButton = document.querySelector('.make-poster')
 
+var savePosterButton = document.querySelector('.save-poster')
+
+var posterGrid = document.querySelector('.saved-posters-grid')
+
+
+
 //change poster on main screen
 posterTitle.innerText = titles[getRandomIndex(titles)]
 posterQuote.innerText = quotes[getRandomIndex(quotes)]
 posterImage.src= images[getRandomIndex(images)]
 posterImage.alt= 'a motivational image'
-
+currentPoster = createPoster(posterImage.src,posterTitle.innerText,posterQuote.innerText)
 
 // event listeners go here 👇
 
@@ -140,11 +146,14 @@ makePosterButton.addEventListener("click",makePosters)
 
 takeMeBack.addEventListener("click",backToMain)
 
-savedPostersButton.addEventListener("click",showSavedPosters)
+showSavedPostersButton.addEventListener("click",showSavedPosters)
 
 backButton.addEventListener("click",backToMain)
 
 showPosterButton.addEventListener("click",userPoster)
+
+savePosterButton.addEventListener("click",savePoster)
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -166,6 +175,8 @@ function randomPoster(){
   posterTitle.innerText = titles[getRandomIndex(titles)]
   posterQuote.innerText = quotes[getRandomIndex(quotes)]
   posterImage.src = images[getRandomIndex(images)]
+
+  currentPoster = createPoster( posterImage.src,posterTitle.innerText,posterQuote.innerText)
 }
 
 function makePosters(){
@@ -175,12 +186,25 @@ function makePosters(){
 
 function showSavedPosters(){
   mainPoster.style.display = 'none'
-  savedPosters.classList.remove("hidden")
+  savedPostersView.classList.remove("hidden") 
+
+  //add functionality to display posters
+  //var savedPostersUniq = [...new Set(savedPosters)] //removes duplicates
+
+  for (var i = 0; i < savedPosters.length; i++){
+    posterGrid.innerHTML += 
+    `<article class="poster">
+    <img class= "poster-img" src=${savedPosters[i].imageURL}>
+    <h1 class="poster-title">${savedPosters[i].title}</h1>
+    <h3 class="poster-quote">${savedPosters[i].quote}</h3>
+    </article>`
+  }
+ 
 }
 
 function backToMain(){
   posterForm.classList.add("hidden")
-  savedPosters.classList.add("hidden")
+  savedPostersView.classList.add("hidden") 
   mainPoster.style.display = 'block'
 }
 
@@ -188,7 +212,7 @@ function userPoster(event){
   event.preventDefault()
 
   currentPoster = createPoster(userImage.value,userTitle.value,userQuote.value)
-  
+
   images.push(currentPoster.imageURL)
   titles.push(currentPoster.title)
   quotes.push(currentPoster.quote)
@@ -201,4 +225,15 @@ function userPoster(event){
   posterImage.src= currentPoster.imageURL
   posterImage.alt= 'a motivational image'
 
+}
+
+function savePoster(){
+  //add current poster to savedPosters array
+
+  //var poster = createPoster(posterImage,posterTitle,posterQuote)
+  if(!savedPosters.includes(currentPoster)){
+    savedPosters.push(currentPoster)
+  }
+  //savedPosters.push(currentPoster)
+  
 }
