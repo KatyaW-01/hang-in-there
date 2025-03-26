@@ -107,12 +107,6 @@ var posterTitle = document.querySelector('.poster-title')
 var posterQuote = document.querySelector('.poster-quote')
 var posterImage = document.querySelector('.poster-img')
 
-//change poster
-posterTitle.innerText = titles[getRandomIndex(titles)]
-posterQuote.innerText = quotes[getRandomIndex(quotes)]
-posterImage.src= images[getRandomIndex(images)]
-posterImage.alt= 'a motivational image'
-
 var makePosterButton = document.querySelector('.show-form')
 var mainPoster = document.querySelector('.main-poster')
 var posterForm = document.querySelector('.poster-form')
@@ -122,6 +116,16 @@ var takeMeBack = document.querySelector('.show-main')
 var savedPostersButton = document.querySelector('.show-saved')
 
 var savedPosters = document.querySelector('.saved-posters')
+
+var backButton = document.querySelector('.back-to-main')
+
+//change poster on main screen
+posterTitle.innerText = titles[getRandomIndex(titles)]
+posterQuote.innerText = quotes[getRandomIndex(quotes)]
+posterImage.src= images[getRandomIndex(images)]
+posterImage.alt= 'a motivational image'
+
+
 // event listeners go here 👇
 
 randPosterButton.addEventListener("click",randomPoster)
@@ -131,6 +135,8 @@ makePosterButton.addEventListener("click",makePosters)
 takeMeBack.addEventListener("click",backToMain)
 
 savedPostersButton.addEventListener("click",showSavedPosters)
+
+backButton.addEventListener("click",backToMain)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -159,12 +165,14 @@ function makePosters(){
   posterForm.classList.remove("hidden")
 }
 
-function backToMain(){
-  posterForm.classList.add("hidden")
-  mainPoster.style.display = 'block'
-}
-
 function showSavedPosters(){
   mainPoster.style.display = 'none'
   savedPosters.classList.remove("hidden")
+}
+
+function backToMain(){
+  posterForm.classList.add("hidden")
+  savedPosters.classList.add("hidden")
+  mainPoster.style.display = 'block'
+  
 }
