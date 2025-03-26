@@ -118,13 +118,19 @@ var mainPoster = document.querySelector('.main-poster')
 var posterForm = document.querySelector('.poster-form')
 
 var takeMeBack = document.querySelector('.show-main')
+
+var savedPostersButton = document.querySelector('.show-saved')
+
+var savedPosters = document.querySelector('.saved-posters')
 // event listeners go here 👇
 
 randPosterButton.addEventListener("click",randomPoster)
 
-makePosterButton.addEventListener("click",changePage)
+makePosterButton.addEventListener("click",makePosters)
 
 takeMeBack.addEventListener("click",backToMain)
+
+savedPostersButton.addEventListener("click",showSavedPosters)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -148,7 +154,7 @@ function randomPoster(){
   posterImage.src = images[getRandomIndex(images)]
 }
 
-function changePage(){
+function makePosters(){
   mainPoster.style.display = 'none'
   posterForm.classList.remove("hidden")
 }
@@ -156,4 +162,9 @@ function changePage(){
 function backToMain(){
   posterForm.classList.add("hidden")
   mainPoster.style.display = 'block'
+}
+
+function showSavedPosters(){
+  mainPoster.style.display = 'none'
+  savedPosters.classList.remove("hidden")
 }
