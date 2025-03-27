@@ -144,3 +144,12 @@ button:hover {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+/*Unmotivational Posters */
+.unmotivational-posters {
+  padding: 40px;
+}
+.unmotivational-posters h2 {
+  margin-bottom: 30px;
+}
+

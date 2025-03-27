@@ -10,20 +10,21 @@
 <body>
   <section class="main-poster">
     <article class="poster">
-      <img class="poster-img" src="" alt="nothin' to see here"> <!--no link-->
+      <img class="poster-img" src="" alt="nothin' to see here"> 
       <h1 class="poster-title">Title</h1>
       <h3 class="poster-quote">Quote</h3>
     </article>
     <button class="save-poster">Save This Poster</button>
-    <button class="show-saved">Show Saved Posters</button> <!--buttons currently don't have functionality-->
+    <button class="show-saved">Show Saved Posters</button> 
     <button class="show-random">Show Another Random Poster</button>
     <button class="show-form">Make Your Own Poster</button>
+    <button class ="unmotivational">Unmotivational Posters</button>
   </section>
-  <section class="poster-form hidden"> <!-- two classes: poster-form, hidden-->
+  <section class="poster-form hidden"> 
     <form>
       <h2>Create your own motivational poster</h2>
       <label for="poster-image-url">Image url</label>
-      <input type="text" name="poster-image-url" id="poster-image-url" placeholder="https://gph.is/2n553Ra"> <!--take input from user-->
+      <input type="text" name="poster-image-url" id="poster-image-url" placeholder="https://gph.is/2n553Ra"> 
       <label for="poster-title">Motivational title</label>
       <input type="text" name="poster-title" id="poster-title" placeholder="Growth Mindset">
       <label for="poster-quote">Motivational quote</label>
@@ -33,11 +34,16 @@
     <div class="divider"></div>
     <button class="show-main">Nevermind, take me back!</button>
   </section>
-  <section class="saved-posters hidden"> <!--two classes: saved-posters, hidden-->
+  <section class="saved-posters hidden"> 
     <h2>Saved Posters</h2>
-    <div class="saved-posters-grid"></div> <!--will need to build this out?-->
+    <div class="saved-posters-grid"></div> 
     <button class="back-to-main">Back to Main</button>
   </section>
-  <script src="./src/main.js"></script> <!--connects javascript file-->
+  <section class ="unmotivational-posters hidden">
+    <h2>Unmotivational Posters</h2>
+    <div class="unmotivational-posters-grid"></div>
+    <button class="back-button">Back to Main</button>
+  </section>
+  <script src="./src/main.js"></script> 
 </body>
 </html>

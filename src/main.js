@@ -135,6 +135,7 @@ var unmotivationalPosters = document.querySelector('.unmotivational-posters')
 
 var unmotivationalBackButton = document.querySelector('.back-button')
 
+console.log(posterGrid)
 
 //change poster on main screen
 posterTitle.innerText = titles[getRandomIndex(titles)]
@@ -204,6 +205,7 @@ function showSavedPosters(){
   //var savedPostersUniq = [...new Set(savedPosters)] //removes duplicates
 
   for (var i = 0; i < savedPosters.length; i++){
+
     posterGrid.innerHTML += 
     `<article class="mini-poster">
     <img class= "mini-poster img" src=${savedPosters[i].imageURL}>
