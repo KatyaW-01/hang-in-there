@@ -221,7 +221,10 @@ var unmotivationalPostersArray = [
     img_url: "./assets/doubt.jpg",
   }
 ];
+var cleanDataArray = [];
+
 var savedPosters = [];
+
 var currentPoster;
 
 var randPosterButton = document.querySelector('.show-random')
@@ -283,7 +286,10 @@ showPosterButton.addEventListener("click",userPoster)
 
 savePosterButton.addEventListener("click",savePoster)
 
-unmotivationalPosterButton.addEventListener("click",displayUnmotivationalPosters)
+unmotivationalPosterButton.addEventListener("click", function() {
+  cleanData()
+  displayUnmotivationalPosters()
+})
 
 unmotivationalBackButton.addEventListener("click",takeBackToMain)
 
@@ -321,9 +327,6 @@ function showSavedPosters(){
   mainPoster.style.display = 'none'
   savedPostersView.classList.remove("hidden") 
 
-  //add functionality to display posters
-  //var savedPostersUniq = [...new Set(savedPosters)] //removes duplicates
-
   for (var i = 0; i < savedPosters.length; i++){
 
     posterGrid.innerHTML += 
@@ -341,7 +344,6 @@ function backToMain(){
   savedPostersView.classList.add("hidden") 
   mainPoster.style.display = 'block'
 
-  //posterGrid.innerHTML = ''
 }
 
 function clearSavedPosters() {
@@ -376,6 +378,7 @@ function savePoster(){
 function displayUnmotivationalPosters(){
   mainPoster.style.display = 'none'
   unmotivationalPosters.classList.remove("hidden") 
+  //add functionality here to display the posters fron the new cleaned list 
 }
 
 function takeBackToMain() {
@@ -385,8 +388,11 @@ function takeBackToMain() {
 
 function cleanData(){
   for (var i = 0; i < unmotivationalPostersArray.length; i++){
-    createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
+    var newPoster = createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
+    cleanDataArray.push(newPoster)
   }
 }
 
-console.log(cleanData())
+console.log(cleanDataArray)
+
+
