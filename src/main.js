@@ -129,6 +129,9 @@ var savePosterButton = document.querySelector('.save-poster')
 
 var posterGrid = document.querySelector('.saved-posters-grid')
 
+var unmotivationalPosterButton = document.querySelector('.unmotivational')
+
+var unmotivationalPosters = document.querySelector('.unmotivational-posters')
 
 
 //change poster on main screen
@@ -153,6 +156,8 @@ backButton.addEventListener("click",backToMain)
 showPosterButton.addEventListener("click",userPoster)
 
 savePosterButton.addEventListener("click",savePoster)
+
+unmotivationalPosterButton.addEventListener("click",displayUnmotivationalPosters)
 
 
 // functions and event handlers go here 👇
@@ -230,12 +235,12 @@ function userPoster(event){
 }
 
 function savePoster(){
-  //add current poster to savedPosters array
-
-  //var poster = createPoster(posterImage,posterTitle,posterQuote)
   if(!savedPosters.includes(currentPoster)){
     savedPosters.push(currentPoster)
   }
-  //savedPosters.push(currentPoster)
-  
+}
+
+function displayUnmotivationalPosters(){
+  mainPoster.style.display = 'none'
+  unmotivationalPosters.classList.remove("hidden") 
 }
