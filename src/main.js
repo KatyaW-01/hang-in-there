@@ -133,6 +133,8 @@ var unmotivationalPosterButton = document.querySelector('.unmotivational')
 
 var unmotivationalPosters = document.querySelector('.unmotivational-posters')
 
+var unmotivationalBackButton = document.querySelector('.back-button')
+
 
 //change poster on main screen
 posterTitle.innerText = titles[getRandomIndex(titles)]
@@ -151,13 +153,18 @@ takeMeBack.addEventListener("click",backToMain)
 
 showSavedPostersButton.addEventListener("click",showSavedPosters)
 
-backButton.addEventListener("click",backToMain)
+backButton.addEventListener("click", function(){
+  backToMain()
+  clearSavedPosters()
+})
 
 showPosterButton.addEventListener("click",userPoster)
 
 savePosterButton.addEventListener("click",savePoster)
 
 unmotivationalPosterButton.addEventListener("click",displayUnmotivationalPosters)
+
+unmotivationalBackButton.addEventListener("click",takeBackToMain)
 
 
 // functions and event handlers go here 👇
@@ -212,6 +219,10 @@ function backToMain(){
   savedPostersView.classList.add("hidden") 
   mainPoster.style.display = 'block'
 
+  //posterGrid.innerHTML = ''
+}
+
+function clearSavedPosters() {
   posterGrid.innerHTML = ''
 }
 
@@ -243,4 +254,9 @@ function savePoster(){
 function displayUnmotivationalPosters(){
   mainPoster.style.display = 'none'
   unmotivationalPosters.classList.remove("hidden") 
+}
+
+function takeBackToMain() {
+  unmotivationalPosters.classList.add("hidden") 
+  mainPoster.style.display = 'block'
 }
