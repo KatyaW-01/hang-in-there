@@ -343,7 +343,7 @@ function showSavedPosters(){
     <h4 class="poster-quote">${savedPosters[i].quote}</h4>
     </article>`
   }
- 
+
 }
 
 function backToMain(){
@@ -399,7 +399,6 @@ function clearUnmotivationalPosters(){
 function cleanData(){
   for (var i = 0; i < unmotivationalPostersArray.length; i++){
     var newPoster = createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
-   // console.log(newPoster.title)
 
     unmotivationalGrid.innerHTML += 
     `<article class="mini-poster">
@@ -413,7 +412,7 @@ function cleanData(){
     // }
 
     if(!cleanDataArray.some(function(poster){
-      return poster.title === newPoster.title
+      return poster.title === newPoster.title  //returns true if this condition is met but the ! flips it to be false
     })){
       cleanDataArray.push(newPoster)
     }
@@ -422,8 +421,18 @@ function cleanData(){
 }
 
 function removeUnmotivationalPoster(){
-  console.log(posterTitle)
-  cleanDataArray.remove()
+  //target posters
+
+  if(event.target.classList.contains("mini-poster") || event.target.classList.contains("poster-title") || event.target.classList.contains("poster-quote")){
+    console.log(event)
+    //when double clicked on, poster will be removed from array
+    for (var i = 0; i < cleanDataArray.length; i ++){
+      
+    }
+  }
+
+
+  //re-display posters
 }
 
 
