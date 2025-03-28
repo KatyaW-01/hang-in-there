@@ -288,12 +288,17 @@ showPosterButton.addEventListener("click",userPoster)
 
 savePosterButton.addEventListener("click",savePoster)
 
-unmotivationalPosterButton.addEventListener("click", function() {
+unmotivationalPosterButton.addEventListener("click", function(){
   cleanData()
   displayUnmotivationalPosters()
 })
 
-unmotivationalBackButton.addEventListener("click",takeBackToMain)
+unmotivationalBackButton.addEventListener("click", function(){
+  takeBackToMain()
+  clearUnmotivationalPosters()
+})
+
+unmotivationalPosters.addEventListener("dblclick",removeUnmotivationalPoster)
 
 
 // functions and event handlers go here 👇
@@ -380,16 +385,6 @@ function savePoster(){
 function displayUnmotivationalPosters(){
   mainPoster.style.display = 'none'
   unmotivationalPosters.classList.remove("hidden") 
-  //add functionality here to display the posters fron the new cleaned list 
-  for (var i = 0; i < cleanDataArray.length; i++){
-
-    unmotivationalGrid.innerHTML += 
-    `<article class="mini-poster">
-    <img class= "mini-poster img" src=${cleanDataArray[i].imageURL}>
-    <h2 class="poster-title">${cleanDataArray[i].title}</h2>
-    <h4 class="poster-quote">${cleanDataArray[i].quote}</h4>
-    </article>`
-  }
 }
 
 function takeBackToMain() {
@@ -397,13 +392,26 @@ function takeBackToMain() {
   mainPoster.style.display = 'block'
 }
 
+function clearUnmotivationalPosters(){
+  unmotivationalGrid.innerHTML = ''
+}
+
 function cleanData(){
   for (var i = 0; i < unmotivationalPostersArray.length; i++){
     var newPoster = createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
-    cleanDataArray.push(newPoster)
+
+    unmotivationalGrid.innerHTML += 
+    `<article class="mini-poster">
+    <img class= "mini-poster img" src=${newPoster.imageURL}>
+    <h2 class="poster-title">${newPoster.title}</h2>
+    <h4 class="poster-quote">${newPoster.quote}</h4>
+    </article>`
   }
 }
 
-console.log(cleanDataArray)
+function removeUnmotivationalPoster(){
+  console.log(posterTitle)
+  cleanDataArray.remove()
+}
 
 
