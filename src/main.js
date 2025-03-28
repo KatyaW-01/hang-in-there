@@ -260,6 +260,8 @@ var unmotivationalPosters = document.querySelector('.unmotivational-posters')
 
 var unmotivationalBackButton = document.querySelector('.back-button')
 
+var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid')
+
 //change poster on main screen
 posterTitle.innerText = titles[getRandomIndex(titles)]
 posterQuote.innerText = quotes[getRandomIndex(quotes)]
@@ -379,6 +381,15 @@ function displayUnmotivationalPosters(){
   mainPoster.style.display = 'none'
   unmotivationalPosters.classList.remove("hidden") 
   //add functionality here to display the posters fron the new cleaned list 
+  for (var i = 0; i < cleanDataArray.length; i++){
+
+    unmotivationalGrid.innerHTML += 
+    `<article class="mini-poster">
+    <img class= "mini-poster img" src=${cleanDataArray[i].imageURL}>
+    <h2 class="poster-title">${cleanDataArray[i].title}</h2>
+    <h4 class="poster-quote">${cleanDataArray[i].quote}</h4>
+    </article>`
+  }
 }
 
 function takeBackToMain() {
