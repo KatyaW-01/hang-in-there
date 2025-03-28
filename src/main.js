@@ -399,6 +399,7 @@ function clearUnmotivationalPosters(){
 function cleanData(){
   for (var i = 0; i < unmotivationalPostersArray.length; i++){
     var newPoster = createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
+   // console.log(newPoster.title)
 
     unmotivationalGrid.innerHTML += 
     `<article class="mini-poster">
@@ -406,6 +407,17 @@ function cleanData(){
     <h2 class="poster-title">${newPoster.title}</h2>
     <h4 class="poster-quote">${newPoster.quote}</h4>
     </article>`
+
+    // if(!cleanDataArray.some(poster => poster.title === newPoster.title)){
+    //   cleanDataArray.push(newPoster)
+    // }
+
+    if(!cleanDataArray.some(function(poster){
+      return poster.title === newPoster.title
+    })){
+      cleanDataArray.push(newPoster)
+    }
+
   }
 }
 
