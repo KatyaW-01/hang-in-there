@@ -263,11 +263,13 @@ var unmotivationalBackButton = document.querySelector('.back-button')
 var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid')
 
 //change poster on main screen
-posterTitle.innerText = titles[getRandomIndex(titles)]
-posterQuote.innerText = quotes[getRandomIndex(quotes)]
-posterImage.src= images[getRandomIndex(images)]
-posterImage.alt= 'a motivational image'
-currentPoster = createPoster(posterImage.src,posterTitle.innerText,posterQuote.innerText)
+// posterTitle.innerText = titles[getRandomIndex(titles)]
+// posterQuote.innerText = quotes[getRandomIndex(quotes)]
+// posterImage.src= images[getRandomIndex(images)]
+// posterImage.alt= 'a motivational image'
+// currentPoster = createPoster(posterImage.src,posterTitle.innerText,posterQuote.innerText)
+randomPoster()
+cleanData()
 
 // event listeners go here 👇
 
@@ -288,10 +290,7 @@ showPosterButton.addEventListener("click",userPoster)
 
 savePosterButton.addEventListener("click",savePoster)
 
-unmotivationalPosterButton.addEventListener("click", function(){
-  cleanData()
-  displayUnmotivationalPosters()
-})
+unmotivationalPosterButton.addEventListener("click", displayUnmotivationalPosters)
 
 unmotivationalBackButton.addEventListener("click", function(){
   takeBackToMain()
@@ -337,11 +336,11 @@ function showSavedPosters(){
   for (var i = 0; i < savedPosters.length; i++){
 
     posterGrid.innerHTML += 
-    `<article class="mini-poster">
-    <img class= "mini-poster img" src=${savedPosters[i].imageURL}>
+    `<div class="mini-poster">
+    <img class="img" src=${savedPosters[i].imageURL}>
     <h2 class="poster-title">${savedPosters[i].title}</h2>
     <h4 class="poster-quote">${savedPosters[i].quote}</h4>
-    </article>`
+    </div>`
   }
 
 }
@@ -385,7 +384,15 @@ function savePoster(){
 function displayUnmotivationalPosters(){
   mainPoster.style.display = 'none'
   unmotivationalPosters.classList.remove("hidden") 
-}
+
+  for (var i =0; i < cleanDataArray.length; i++){
+    unmotivationalGrid.innerHTML += 
+    `<div class="mini-poster" data-title="${cleanDataArray[i].title}">
+    <img class="img" src=${cleanDataArray[i].imageURL}>
+    <h2 class="poster-title">${cleanDataArray[i].title}</h2>
+    <h4 class="poster-quote">${cleanDataArray[i].quote}</h4>
+    </div>`
+}}
 
 function takeBackToMain() {
   unmotivationalPosters.classList.add("hidden") 
@@ -400,39 +407,39 @@ function cleanData(){
   for (var i = 0; i < unmotivationalPostersArray.length; i++){
     var newPoster = createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
 
-    unmotivationalGrid.innerHTML += 
-    `<article class="mini-poster">
-    <img class= "mini-poster img" src=${newPoster.imageURL}>
-    <h2 class="poster-title">${newPoster.title}</h2>
-    <h4 class="poster-quote">${newPoster.quote}</h4>
-    </article>`
-
-    // if(!cleanDataArray.some(poster => poster.title === newPoster.title)){
-    //   cleanDataArray.push(newPoster)
-    // }
-
-    if(!cleanDataArray.some(function(poster){
-      return poster.title === newPoster.title  //returns true if this condition is met but the ! flips it to be false
-    })){
+    if(!cleanDataArray.some(poster => poster.title === newPoster.title)){ //returns true if this condition is met but the ! flips it to be false
       cleanDataArray.push(newPoster)
     }
 
+
   }
 }
+
+
 
 function removeUnmotivationalPoster(){
-  //target posters
-
-  if(event.target.classList.contains("mini-poster") || event.target.classList.contains("poster-title") || event.target.classList.contains("poster-quote")){
-    console.log(event)
-    //when double clicked on, poster will be removed from array
-    for (var i = 0; i < cleanDataArray.length; i ++){
-      
+ 
+  const miniPoster = event.target.closest(".mini-poster")
+  let title = miniPoster.dataset.title
+  if(miniPoster){
+    //console.log(event)
+    //console.log(title)
+    let index;
+    for (var i=0; i < cleanDataArray.length; i++){
+      if (title === cleanDataArray[i].title){
+        index = i
+        break
+      }
     }
+    cleanDataArray.splice(index,1)
+    
+    event.target.closest(".mini-poster").classList.add("hidden")
   }
 
 
-  //re-display posters
+  
 }
+
+//|| event.target.classList.contains("poster-title") || event.target.classList.contains("poster-quote") 
 
 
