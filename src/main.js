@@ -262,12 +262,6 @@ var unmotivationalBackButton = document.querySelector('.back-button')
 
 var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid')
 
-//change poster on main screen
-// posterTitle.innerText = titles[getRandomIndex(titles)]
-// posterQuote.innerText = quotes[getRandomIndex(quotes)]
-// posterImage.src= images[getRandomIndex(images)]
-// posterImage.alt= 'a motivational image'
-// currentPoster = createPoster(posterImage.src,posterTitle.innerText,posterQuote.innerText)
 randomPoster()
 cleanData()
 
@@ -410,18 +404,17 @@ function cleanData(){
     if(!cleanDataArray.some(poster => poster.title === newPoster.title)){ //returns true if this condition is met but the ! flips it to be false
       cleanDataArray.push(newPoster)
     }
-
-
   }
 }
 
 function removeUnmotivationalPoster(){
  
   const miniPoster = event.target.closest(".mini-poster")
-  let title = miniPoster.dataset.title
+  var title = miniPoster.dataset.title
   if(miniPoster){
   
-    let index;
+    var index;
+
     for (var i=0; i < cleanDataArray.length; i++){
       if (title === cleanDataArray[i].title){
         index = i
