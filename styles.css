@@ -109,8 +109,7 @@ button:hover {
   padding: 40px;
 }
 
-.saved-posters-grid,
-.unmotivational-posters-grid {
+.saved-posters-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -147,10 +146,34 @@ button:hover {
 }
 
 /*Unmotivational Posters */
-.unmotivational-posters {
-  padding: 40px;
+.unmotivational-posters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 10px;
 }
+
+.unmotivational-posters {
+  padding: 30px;
+}
+
+.unmotivational-mini {
+  background-color: grey;
+  border-radius: 10px
+}
+
 .unmotivational-posters h2 {
   margin-bottom: 30px;
 }
+
+.unmotivational-mini h2{
+  color: black
+}
+
+.back-button {
+  margin-top: 30px;
+}
+
+
 

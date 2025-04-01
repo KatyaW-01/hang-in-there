@@ -387,7 +387,7 @@ function displayUnmotivationalPosters(){
 
   for (var i =0; i < cleanDataArray.length; i++){
     unmotivationalGrid.innerHTML += 
-    `<div class="mini-poster" data-title="${cleanDataArray[i].title}">
+    `<div class="mini-poster unmotivational-mini" data-title="${cleanDataArray[i].title}">
     <img class="img" src=${cleanDataArray[i].imageURL}>
     <h2 class="poster-title">${cleanDataArray[i].title}</h2>
     <h4 class="poster-quote">${cleanDataArray[i].quote}</h4>
@@ -415,15 +415,12 @@ function cleanData(){
   }
 }
 
-
-
 function removeUnmotivationalPoster(){
  
   const miniPoster = event.target.closest(".mini-poster")
   let title = miniPoster.dataset.title
   if(miniPoster){
-    //console.log(event)
-    //console.log(title)
+  
     let index;
     for (var i=0; i < cleanDataArray.length; i++){
       if (title === cleanDataArray[i].title){
@@ -439,7 +436,5 @@ function removeUnmotivationalPoster(){
 
   
 }
-
-//|| event.target.classList.contains("poster-title") || event.target.classList.contains("poster-quote") 
 
 
