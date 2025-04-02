@@ -260,8 +260,6 @@ var unmotivationalBackButton = document.querySelector('.back-button')
 
 var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid')
 
-var modal = document.querySelector('.modal')
-
 randomPoster()
 cleanData()
 
@@ -293,7 +291,7 @@ unmotivationalBackButton.addEventListener("click", function(){
 
 unmotivationalPosters.addEventListener("dblclick",removeUnmotivationalPoster)
 
-posterGrid.addEventListener("dblclick",displayModal)
+posterGrid.addEventListener("dblclick", createModal)
 
 // functions and event handlers
 
@@ -409,7 +407,7 @@ function removeUnmotivationalPoster(){
   let title = miniPoster.dataset.title
 
   var index;
-  
+
   for (var i=0; i < cleanedUnmotivationalPosters.length; i++){ 
     if (title === cleanedUnmotivationalPosters[i].title){ 
       index = i
@@ -421,20 +419,17 @@ function removeUnmotivationalPoster(){
   
 }
 
-function displayModal() {
+function createModal() {
   const savedMiniPoster = event.target.closest(".mini-poster")
   let title = savedMiniPoster.dataset.title
-  console.log(title)
-  let poster; // the saved poster that was double clicked on
+ 
+  let poster; 
   for (var i = 0; i < savedPosters.length; i++){
     if (title === savedPosters[i].title){
       poster = savedPosters[i]
     }
   }
-  console.log(poster)
 
-  
-  // add html to saved posters for the Modal
   posterGrid.innerHTML += 
   `<section class="modal hidden">
     <div class="poster">
@@ -445,9 +440,9 @@ function displayModal() {
     </div>
   </section>
   <div class="overlay hidden"></div>`
-
-  
-  modal.classList.remove("hidden")
 }
+
+
+
 
 
