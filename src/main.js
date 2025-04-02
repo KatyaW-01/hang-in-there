@@ -1,7 +1,5 @@
-// query selector variables go here 👇
+// query selector variables
 
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -221,7 +219,7 @@ var unmotivationalPostersArray = [
     img_url: "./assets/doubt.jpg",
   }
 ];
-var cleanDataArray = [];
+var cleanedUnmotivationalPosters = [];
 
 var savedPosters = [];
 
@@ -265,7 +263,7 @@ var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid')
 randomPoster()
 cleanData()
 
-// event listeners go here 👇
+// event listeners
 
 randPosterButton.addEventListener("click",randomPoster)
 
@@ -293,13 +291,13 @@ unmotivationalBackButton.addEventListener("click", function(){
 
 unmotivationalPosters.addEventListener("dblclick",removeUnmotivationalPoster)
 
+posterGrid.addEventListener("dblclick",displayModal)
 
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
+// functions and event handlers
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-
 
 function createPoster(imageURL, title, quote) {
   return {
@@ -308,7 +306,6 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 }
-
 
 function randomPoster(){
   posterTitle.innerText = titles[getRandomIndex(titles)]
@@ -336,14 +333,12 @@ function showSavedPosters(){
     <h4 class="poster-quote">${savedPosters[i].quote}</h4>
     </div>`
   }
-
 }
 
 function backToMain(){
   posterForm.classList.add("hidden")
   savedPostersView.classList.add("hidden") 
   mainPoster.style.display = 'block'
-
 }
 
 function clearSavedPosters() {
@@ -379,12 +374,12 @@ function displayUnmotivationalPosters(){
   mainPoster.style.display = 'none'
   unmotivationalPosters.classList.remove("hidden") 
 
-  for (var i =0; i < cleanDataArray.length; i++){
+  for (var i =0; i < cleanedUnmotivationalPosters.length; i++){ 
     unmotivationalGrid.innerHTML += 
-    `<div class="mini-poster unmotivational-mini" data-title="${cleanDataArray[i].title}">
-    <img class="img" src=${cleanDataArray[i].imageURL}>
-    <h2 class="poster-title">${cleanDataArray[i].title}</h2>
-    <h4 class="poster-quote">${cleanDataArray[i].quote}</h4>
+    `<div class="mini-poster unmotivational-mini" data-title="${cleanedUnmotivationalPosters[i].title}"> 
+    <img class="img" src=${cleanedUnmotivationalPosters[i].imageURL}>
+    <h2 class="poster-title">${cleanedUnmotivationalPosters[i].title}</h2>
+    <h4 class="poster-quote">${cleanedUnmotivationalPosters[i].quote}</h4>
     </div>`
 }}
 
@@ -401,33 +396,32 @@ function cleanData(){
   for (var i = 0; i < unmotivationalPostersArray.length; i++){
     var newPoster = createPoster(unmotivationalPostersArray[i].img_url,unmotivationalPostersArray[i].name,unmotivationalPostersArray[i].description)
 
-    if(!cleanDataArray.some(poster => poster.title === newPoster.title)){ //returns true if this condition is met but the ! flips it to be false
-      cleanDataArray.push(newPoster)
+    if(!cleanedUnmotivationalPosters.some(poster => poster.title === newPoster.title)){ //returns true if this condition is met but the ! flips it to be false
+      cleanedUnmotivationalPosters.push(newPoster) 
     }
   }
 }
 
 function removeUnmotivationalPoster(){
- 
   const miniPoster = event.target.closest(".mini-poster")
-  var title = miniPoster.dataset.title
-  if(miniPoster){
-  
-    var index;
+  let title = miniPoster.dataset.title
 
-    for (var i=0; i < cleanDataArray.length; i++){
-      if (title === cleanDataArray[i].title){
+  if(miniPoster){
+    var index;
+    for (var i=0; i < cleanedUnmotivationalPosters.length; i++){ 
+      if (title === cleanedUnmotivationalPosters[i].title){ 
         index = i
         break
       }
     }
-    cleanDataArray.splice(index,1)
-    
+    cleanedUnmotivationalPosters.splice(index,1) 
     event.target.closest(".mini-poster").classList.add("hidden")
-  }
+  } 
+}
 
-
-  
+function displayModal() {
+  const savedMiniPoster = event.target.closest(".mini-poster")
+  console.log(event)
 }
 
 
