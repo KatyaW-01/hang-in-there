@@ -260,6 +260,8 @@ var unmotivationalBackButton = document.querySelector('.back-button')
 
 var unmotivationalGrid = document.querySelector('.unmotivational-posters-grid')
 
+var modal = document.querySelector('.modal')
+
 randomPoster()
 cleanData()
 
@@ -327,7 +329,7 @@ function showSavedPosters(){
   for (var i = 0; i < savedPosters.length; i++){
 
     posterGrid.innerHTML += 
-    `<div class="mini-poster">
+    `<div class="mini-poster" data-title="${savedPosters[i].title}">
     <img class="img" src=${savedPosters[i].imageURL}>
     <h2 class="poster-title">${savedPosters[i].title}</h2>
     <h4 class="poster-quote">${savedPosters[i].quote}</h4>
@@ -406,22 +408,46 @@ function removeUnmotivationalPoster(){
   const miniPoster = event.target.closest(".mini-poster")
   let title = miniPoster.dataset.title
 
-  if(miniPoster){
-    var index;
-    for (var i=0; i < cleanedUnmotivationalPosters.length; i++){ 
-      if (title === cleanedUnmotivationalPosters[i].title){ 
-        index = i
-        break
-      }
+  var index;
+  
+  for (var i=0; i < cleanedUnmotivationalPosters.length; i++){ 
+    if (title === cleanedUnmotivationalPosters[i].title){ 
+      index = i
+      break
     }
-    cleanedUnmotivationalPosters.splice(index,1) 
-    event.target.closest(".mini-poster").classList.add("hidden")
-  } 
+  }
+  cleanedUnmotivationalPosters.splice(index,1) 
+  event.target.closest(".mini-poster").classList.add("hidden")
+  
 }
 
 function displayModal() {
   const savedMiniPoster = event.target.closest(".mini-poster")
-  console.log(event)
+  let title = savedMiniPoster.dataset.title
+  console.log(title)
+  let poster; // the saved poster that was double clicked on
+  for (var i = 0; i < savedPosters.length; i++){
+    if (title === savedPosters[i].title){
+      poster = savedPosters[i]
+    }
+  }
+  console.log(poster)
+
+  
+  // add html to saved posters for the Modal
+  posterGrid.innerHTML += 
+  `<section class="modal hidden">
+    <div class="poster">
+    <img class="poster-img" src=${poster.imageURL}>
+    <h1 class="poster-title">${poster.title}</h1>
+    <h3 class="poster-quote">${poster.quote}</h3>
+    <button class="btn-close">x</button>
+    </div>
+  </section>
+  <div class="overlay hidden"></div>`
+
+  
+  modal.classList.remove("hidden")
 }
 
 
